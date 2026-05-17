@@ -2,11 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Арсений | Java-разработчик & создатель игрового движка</title>
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арсений | Java и кастомный движок для Minecraft</title>
     <style>
         * {
             margin: 0;
@@ -15,532 +12,265 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0B0F1C;
-            color: #EDF2F8;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #0f1117;
+            color: #e2e8f0;
             line-height: 1.5;
-            scroll-behavior: smooth;
         }
 
-        /* декоративный фон */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.08), transparent 70%),
-                        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px);
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        /* градиентный шум */
         .container {
-            max-width: 1280px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 2;
+            padding: 0 20px;
         }
 
-        /* header / navigation */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 0 32px 0;
-            flex-wrap: wrap;
-            gap: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+        /* заголовок и навигация — минималистично */
+        .site-header {
+            padding: 32px 0 16px;
+            border-bottom: 1px solid #2d3748;
+            margin-bottom: 40px;
         }
 
         .logo {
-            font-weight: 800;
             font-size: 1.8rem;
-            background: linear-gradient(135deg, #FFB347, #FF6B6B);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #facc15;
         }
 
-        .nav-links {
+        .nav {
+            margin-top: 20px;
             display: flex;
             gap: 28px;
         }
 
-        .nav-links a {
-            color: #CBD5E1;
+        .nav a {
+            color: #a0aec0;
             text-decoration: none;
             font-weight: 500;
-            transition: 0.2s;
-            font-size: 1rem;
         }
 
-        .nav-links a:hover {
-            color: #F97316;
+        .nav a:hover {
+            color: #facc15;
         }
 
-        /* кнопки */
-        .btn {
-            display: inline-block;
-            background: rgba(249, 115, 22, 0.9);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(249,115,22,0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid #F97316;
-            color: #F97316;
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: #F97316;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn:hover {
-            background: #FF8C42;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(249,115,22,0.35);
-        }
-
-        /* hero секция */
-        .hero {
-            padding: 60px 0 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .hero-content {
-            flex: 1;
-            min-width: 260px;
-        }
-
-        .badge {
-            background: rgba(249, 115, 22, 0.15);
-            color: #F97316;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            background: linear-gradient(to right, #FFFFFF, #FFB347);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 16px;
-        }
-
-        .hero h2 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #A0B3D9;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.12rem;
-            color: #CBD5F0;
-            max-width: 550px;
-            margin-bottom: 32px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 28px;
-            margin-top: 16px;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #F97316;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #94A3B8;
-        }
-
-        .hero-icon {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .code-cube {
-            background: rgba(20, 30, 50, 0.6);
-            backdrop-filter: blur(12px);
-            border-radius: 48px;
-            padding: 32px;
-            font-size: 6rem;
-            text-align: center;
-            border: 1px solid rgba(249,115,22,0.3);
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
-        }
-
-        /* секции общие */
         section {
-            margin: 80px 0;
+            margin-bottom: 60px;
         }
 
         .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            display: inline-block;
-            background: linear-gradient(120deg, #F97316, #FFE6C7);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            border-left: 4px solid #F97316;
-            padding-left: 20px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            padding-left: 12px;
+            border-left: 4px solid #facc15;
+            color: #facc15;
         }
 
         .card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 32px;
-            padding: 28px 32px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.25s;
-            height: 100%;
-        }
-
-        .card:hover {
-            border-color: rgba(249, 115, 22, 0.4);
-            transform: translateY(-4px);
-        }
-
-        .engine-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
-            margin-top: 24px;
-        }
-
-        .feature-icon {
-            font-size: 2.2rem;
-            color: #F97316;
-            margin-bottom: 16px;
-        }
-
-        .skill-badge {
-            background: rgba(249,115,22,0.2);
-            color: #FFD5B5;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin: 5px 8px 5px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 20px;
+            background: #1a1e2a;
+            border-radius: 24px;
+            padding: 24px 28px;
             margin-bottom: 28px;
-            align-items: flex-start;
+            border: 1px solid #2d3748;
         }
 
-        .timeline-year {
-            font-weight: 800;
-            font-size: 1.2rem;
-            background: #1E293B;
-            padding: 6px 16px;
-            border-radius: 30px;
-            min-width: 100px;
-            text-align: center;
-            color: #F97316;
-        }
-
-        .contact-links {
-            display: flex;
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
         }
 
-        .contact-icon {
-            background: #1E293B;
-            width: 52px;
-            height: 52px;
+        .feature {
+            background: #1a1e2a;
+            border-radius: 20px;
+            padding: 22px;
+            border: 1px solid #2d3748;
+        }
+
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #facc15;
+        }
+
+        .badge-list {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            font-size: 1.6rem;
-            transition: 0.2s;
-            color: #CBD5E1;
-            text-decoration: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
         }
 
-        .contact-icon:hover {
-            background: #F97316;
-            color: white;
-            transform: scale(1.05);
+        .badge {
+            background: #2d3748;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #cbd5e0;
+        }
+
+        .hero {
+            margin: 20px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0aec0;
+            max-width: 650px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 16px 0;
+            font-size: 1rem;
+        }
+
+        .info-tag {
+            background: #1e293b;
+            padding: 6px 16px;
+            border-radius: 40px;
+        }
+
+        hr {
+            border-color: #2d3748;
+            margin: 20px 0;
         }
 
         footer {
+            border-top: 1px solid #2d3748;
+            padding: 32px 0 40px;
             text-align: center;
-            padding: 40px 0 48px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            margin-top: 40px;
-            color: #6C7A91;
+            color: #6c757d;
             font-size: 0.85rem;
-        }
-
-        @media (max-width: 800px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero h2 {
-                font-size: 1.3rem;
-            }
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .hero-content p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <!-- навигация -->
-    <div class="navbar">
-        <div class="logo">Ars<span style="color:#F97316;">Dev</span></div>
-        <div class="nav-links">
+    <div class="site-header">
+        <div class="logo">ArsDev</div>
+        <div class="nav">
             <a href="#home">Главная</a>
             <a href="#about">Обо мне</a>
             <a href="#engine">Движок</a>
-            <a href="#contact">Контакты</a>
         </div>
     </div>
 
-    <!-- hero / home -->
+    <!-- Герой — минимум пафоса -->
     <section id="home">
         <div class="hero">
-            <div class="hero-content">
-                <div class="badge">
-                    <i class="fas fa-code"></i> Java-инженер · Minecraft энтузиаст
-                </div>
-                <h1>Арсений, 20 лет</h1>
-                <h2>Создаю кастомный движок для мини-режимов на 1.20.1</h2>
-                <p>Java-разработчик с 5-летним опытом. Пишу код с 15 лет, сейчас разрабатываю скриптовый движок, который превращает создание мини-игр в мощный и гибкий процесс.</p>
-                <div class="hero-stats">
-                    <div class="stat"><span class="stat-number">5+</span><span class="stat-label">лет в программировании</span></div>
-                    <div class="stat"><span class="stat-number">1.20.1</span><span class="stat-label">целевая версия Minecraft</span></div>
-                    <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Java & custom scripts</span></div>
-                </div>
-                <div style="margin-top: 30px;">
-                    <a href="#engine" class="btn">✨ Узнать про движок</a>
-                    <a href="#contact" class="btn btn-outline" style="margin-left: 14px;"><i class="fab fa-telegram"></i> Связаться</a>
-                </div>
-            </div>
-            <div class="hero-icon">
-                <div class="code-cube">
-                    <i class="fab fa-java" style="color:#F97316;"></i>
-                    <i class="fas fa-cube" style="margin: 0 12px;"></i>
-                    <i class="fas fa-gamepad"></i>
-                    <div style="font-size: 0.9rem; margin-top: 12px;">⚡ 1.20.1</div>
-                </div>
+            <h1>Арсений, 20 лет</h1>
+            <p>Java-разработчик. Делаю кастомный движок для мини-режимов на Minecraft 1.20.1</p>
+            <div class="info-row">
+                <span class="info-tag">⚙️ Java & Paper API</span>
+                <span class="info-tag">🎮 Цель: скриптовые мини-игры</span>
+                <span class="info-tag">📦 Версия 1.20.1</span>
             </div>
         </div>
     </section>
 
-    <!-- Обо мне: путь и философия -->
+    <!-- Обо мне — исправленная хронология (кодит год, интерес с 15) -->
     <section id="about">
-        <div class="section-title"><i class="fas fa-user-astronaut"></i> Мой путь в разработке</div>
-        <div class="engine-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px,1fr));">
-            <div class="card">
-                <i class="fas fa-child feature-icon"></i>
-                <h3 style="font-size: 1.6rem; margin-bottom: 12px;">Начало в 15 лет</h3>
-                <p>С самого юного возраста меня привлекала Java — первый язык, который позволил создавать реальные проекты. Уже тогда начал изучать основы ООП, алгоритмы и работу с байт-кодом.</p>
-                <div style="margin-top: 20px;"><i class="fas fa-calendar-alt"></i> 2019 — первые плагины для Minecraft</div>
-            </div>
-            <div class="card">
-                <i class="fas fa-microchip feature-icon"></i>
-                <h3 style="font-size: 1.6rem; margin-bottom: 12px;">5 лет развития</h3>
-                <p>За это время я прошёл путь от небольших утилит до архитектуры сложных систем. Работал над плагинами производительности, кастомной генерацией миров, и теперь — собственный движок игровых режимов.</p>
-                <div><i class="fas fa-trophy"></i> 20+ завершённых проектов для серверов</div>
-            </div>
-            <div class="card">
-                <i class="fas fa-rocket feature-icon"></i>
-                <h3 style="font-size: 1.6rem; margin-bottom: 12px;">Сейчас: Custom Script Engine</h3>
-                <p>Флагманский проект — движок для быстрого прототипирования мини-режимов на сервере 1.20.1. Скриптовая система, динамическая загрузка, чистая архитектура.</p>
-                <div><i class="fas fa-code-branch"></i> в активной разработке, готов к интеграции</div>
+        <h2 class="section-title">Обо мне</h2>
+        <div class="card">
+            <p style="margin-bottom: 16px;">Меня зовут Арсений, мне 20 лет. Интерес к программированию и Java появился у меня ещё в 15 лет — я изучал теорию, смотрел примеры, разбирался в устройстве Minecraft серверов. Но <strong>целенаправленно писать код начал около года назад</strong>. За это время я освоил Java Core, работу с Paper API, базы данных и архитектуру плагинов.</p>
+            <p>Сейчас я сосредоточен на создании удобного движка для быстрого прототипирования мини-режимов на версии 1.20.1. Мой подход — понятные скрипты и гибкая настройка.</p>
+            <div class="badge-list">
+                <span class="badge">Java 17+</span>
+                <span class="badge">Paper 1.20.1</span>
+                <span class="badge">Год коммерческого опыта</span>
+                <span class="badge">Скриптинг (JS/Groovy)</span>
             </div>
         </div>
-
-        <!-- таймлайн в виде карточек дополнительно -->
-        <div style="margin-top: 48px; background: rgba(0,0,0,0.2); border-radius: 40px; padding: 28px 24px;">
-            <h3 style="font-size: 1.5rem; margin-bottom: 28px;"><i class="fas fa-chart-line"></i> Хронология</h3>
-            <div class="timeline-item">
-                <div class="timeline-year">15 лет</div>
-                <div>Первый опыт: написание простых модов на Java + Bukkit, изучение Core Java.</div>
+        <div class="grid-2">
+            <div class="feature">
+                <h3>📖 Как всё начиналось</h3>
+                <p style="margin-top: 6px;">С 15 лет увлекался Minecraft и внутренним устройством серверов, читал форумы, смотрел туториалы. Первые попытки кода — год назад, сразу перешёл к реальным проектам: плагины, тестовые моды, и постепенно пришёл к идее своего скриптового движка.</p>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">17 лет</div>
-                <div>Углубление в многопоточность, базы данных, создание плагинов для крупных серверов.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">18-19 лет</div>
-                <div>Разработка сложных систем: экономика, ивент-менеджеры, кастомные GUI.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">20 лет (сейчас)</div>
-                <div><strong>Создание кастомного движка для скриптов</strong> (мини-режимы на 1.20.1) + поддержка сообщества разработчиков.</div>
+            <div class="feature">
+                <h3>🎯 Текущая цель</h3>
+                <p style="margin-top: 6px;">Создать стабильный, лёгкий в использовании движок для мини-режимов (арены, квесты, PvP-сражения) на версии Minecraft 1.20.1. Дать возможность другим разработчикам писать скрипты без глубокого знания Java.</p>
             </div>
         </div>
     </section>
 
-    <!-- Детально про движок -->
+    <!-- Детально про движок (без пафоса, по делу) -->
     <section id="engine">
-        <div class="section-title"><i class="fas fa-cogs"></i> Кастомный движок для скриптов (мини-режимы на 1.20.1)</div>
-        <div class="card" style="margin-bottom: 32px;">
-            <p style="font-size: 1.2rem;">🔥 <strong>Custom Script Engine</strong> — это моя главная разработка. Платформа, позволяющая создавать, управлять и запускать <strong>мини-режимы</strong> (PvP арены, квесты, сражения с боссами, паркур) на сервере <strong>Minecraft 1.20.1</strong> через простые скрипты и конфигурации, без перекомпиляции ядра.</p>
-            <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px;">
-                <span class="skill-badge"><i class="fab fa-java"></i> Java 17+</span>
-                <span class="skill-badge"><i class="fas fa-terminal"></i> Script API (JS, Groovy поддержка)</span>
-                <span class="skill-badge"><i class="fas fa-dharmachakra"></i> Динамическая загрузка</span>
-                <span class="skill-badge"><i class="fas fa-gamepad"></i> Мини-режимы на лету</span>
-            </div>
+        <h2 class="section-title">Кастомный движок для скриптов / мини-режимов</h2>
+        <div class="card">
+            <p style="margin-bottom: 16px;"><strong>Custom Script Engine</strong> — мой основной проект. Это платформа для создания и управления мини-режимами на сервере Minecraft 1.20.1. Режимы описываются скриптами (JavaScript, либо простой DSL) и загружаются динамически, без перезапуска сервера.</p>
+            <p>Движок находится в активной разработке, но уже поддерживает базовый API: ивенты, управление игроками, условия победы, таймеры и кастомные команды.</p>
         </div>
-        
-        <div class="engine-grid">
-            <div class="card">
-                <i class="fas fa-scroll feature-icon"></i>
-                <h3>Скриптовая архитектура</h3>
-                <p>Режимы описываются на скриптовых языках — JS/Lua + специальный DSL. Управление жизненным циклом, ивентами, условиями победы — всё через простой API.</p>
+
+        <div class="grid-2">
+            <div class="feature">
+                <h3>🧩 Скриптовая логика</h3>
+                <p>Каждый мини-режим — отдельный скрипт. Внутри можно описать спавн игроков, правила, цели и награды. Не нужно перекомпилировать ядро.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-bolt feature-icon"></i>
-                <h3>Молниеносное развертывание</h3>
-                <p>Горячая перезагрузка скриптов, создание новых мини-игр без остановки сервера. Адаптация под любую механику: от "King of the Hill" до "One in the Chamber".</p>
+            <div class="feature">
+                <h3>⚡ Динамическая загрузка</h3>
+                <p>Скрипты перезагружаются на лету. Добавил новый режим? Просто положи файл в папку и выполни команду перезагрузки — сервер продолжает работать.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-shield-alt feature-icon"></i>
-                <h3>Оптимизация и совместимость</h3>
-                <p>Нативная поддержка Paper 1.20.1, асинхронные обработчики событий, защита от лагов. Движок написан на чистой Java с упором на производительность.</p>
+            <div class="feature">
+                <h3>🎲 Поддержка мини-игр</h3>
+                <p>Арены, кинг-оф-зе-хилл, тeam deathmatch, охотники на зверей — любые форматы. Движок предоставляет готовые хуки для игровых циклов.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-palette feature-icon"></i>
-                <h3>Гибкая кастомизация</h3>
-                <p>Разработчики могут создавать собственные модули, добавлять свои команды, GUI-меню, а также настраивать каждый мини-режим через внешние конфиги.</p>
+            <div class="feature">
+                <h3>🛠️ Для разработчиков</h3>
+                <p>API на Java + скриптовый мост. Можно расширять функционал, добавлять свои обработчики и создавать сложные режимы без боли.</p>
             </div>
         </div>
 
-        <!-- Техническая вставка про Minecraft 1.20.1 -->
-        <div style="background: linear-gradient(135deg, #1E293B, #0F172A); border-radius: 28px; padding: 24px 28px; margin-top: 40px; border-left: 6px solid #F97316;">
-            <i class="fas fa-cube" style="font-size: 2rem; float: right; opacity: 0.6;"></i>
-            <h3 style="margin-bottom: 12px;">🎮 Почему Minecraft 1.20.1?</h3>
-            <p>Стабильность, богатые возможности API и большое комьюнити. Версия 1.20.1 — идеальный фундамент для создания сложных кастомных режимов. Мой движок использует последние фичи PaperAPI, что обеспечивает высокую совместимость с плагинами и датапаками.</p>
-            <div style="margin-top: 20px;"><i class="fas fa-check-circle" style="color:#F97316;"></i> Уже реализованы: система арен, ивент-менеджер, шедулер скриптов, билдер режимов.</div>
+        <div style="background: #1a1e2a; border-radius: 20px; padding: 20px 24px; margin-top: 16px; border-left: 3px solid #facc15;">
+            <p><strong>Почему 1.20.1?</strong> Стабильная версия с хорошей производительностью и широкими возможностями Paper API. Это позволяет строить надёжную основу для мини-режимов с активным онлайном.</p>
+        </div>
+
+        <!-- технический мини-блок -->
+        <div style="margin-top: 24px;">
+            <h3 style="font-size: 1.3rem; margin-bottom: 12px; font-weight: 500;">Что уже реализовано</h3>
+            <div class="badge-list">
+                <span class="badge">Менеджер арен</span>
+                <span class="badge">Событийная система</span>
+                <span class="badge">Гибкий конфиг (YAML)</span>
+                <span class="badge">Шедулер скриптов</span>
+                <span class="badge">Примеры режимов</span>
+            </div>
         </div>
     </section>
 
-    <!-- Технологии и скиллы -->
+    <!-- Просто упоминание технологий без пафоса -->
     <section>
-        <div class="section-title"><i class="fas fa-laptop-code"></i> Мои технологии & стек</div>
-        <div class="card" style="padding: 32px;">
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px;">
-                <span class="skill-badge"><i class="fab fa-java"></i> Java (SE, многопоточность)</span>
-                <span class="skill-badge"><i class="fas fa-cubes"></i> Spigot / Paper API</span>
-                <span class="skill-badge"><i class="fab fa-git-alt"></i> Git & GitHub</span>
-                <span class="skill-badge"><i class="fas fa-database"></i> SQLite / MySQL</span>
-                <span class="skill-badge"><i class="fab fa-js"></i> JavaScript (скриптинг)</span>
-                <span class="skill-badge"><i class="fas fa-tachometer-alt"></i> Gradle / Maven</span>
-                <span class="skill-badge"><i class="fas fa-minecraft"></i> NMS & Reflection</span>
-                <span class="skill-badge"><i class="fas fa-code-branch"></i> Event-Driven архитектура</span>
+        <h2 class="section-title">Стек и инструменты</h2>
+        <div class="card">
+            <div class="badge-list" style="margin-bottom: 12px;">
+                <span class="badge">Java 17 / 21</span>
+                <span class="badge">Paper API 1.20.1</span>
+                <span class="badge">Gradle / Maven</span>
+                <span class="badge">GraalVM Scripting</span>
+                <span class="badge">SQLite / H2</span>
+                <span class="badge">Git</span>
             </div>
-            <p>В работе над движком использую чистую архитектуру, паттерны проектирования (Command, Factory, Observer). Также активно разрабатываю документацию и примеры мини-режимов для сообщества.</p>
+            <p style="margin-top: 12px;">В разработке движка использую только необходимые библиотеки, стараюсь писать чистый и понятный код. Репозиторий проекта пока приватный, но после стабильного релиза планирую выложить примеры и документацию.</p>
         </div>
     </section>
 
-    <!-- Контакты / соцсети -->
-    <section id="contact">
-        <div class="section-title"><i class="fas fa-paper-plane"></i> Связь со мной</div>
-        <div class="card" style="text-align: center; padding: 40px 20px;">
-            <i class="fas fa-envelope-open-text" style="font-size: 2.8rem; color: #F97316; margin-bottom: 20px; display: inline-block;"></i>
-            <h3>Давайте обсудим движок или идеи мини-режимов!</h3>
-            <p style="max-width: 550px; margin: 16px auto;">Я всегда открыт для коллабораций, фидбека или предложений по разработке на Java/Minecraft. Можете написать мне в Telegram или GitHub, чтобы обсудить интеграцию скриптового движка в ваш проект.</p>
-            <div class="contact-links">
-                <a href="#" class="contact-icon" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="contact-icon" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" class="contact-icon" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="#" class="contact-icon" target="_blank"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p style="margin-top: 30px; font-size: 0.9rem;"><i class="fas fa-code"></i> Почта для связи: arseniy.java@dev.me (в разработке — реальный контакт по запросу)</p>
-            <p class="skill-badge" style="margin-top: 20px; background: rgba(0,0,0,0.4);"><i class="fas fa-clock"></i> доступен для консультаций и сотрудничества</p>
-        </div>
-    </section>
-
+    <!-- Убраны все контакты, кнопки связи, формы и лишние призывы -->
     <footer>
-        <p>© 2025 Арсений — Java-разработчик | Создаю кастомный движок для мини-режимов на Minecraft 1.20.1</p>
-        <p style="margin-top: 12px;"><i class="fas fa-heart" style="color: #F97316;"></i> Кодю с 15 лет, развиваю экосистему скриптового геймплея</p>
+        <p>Арсений, 20 лет · Java-разработка и кастомный движок для Minecraft 1.20.1</p>
+        <p style="margin-top: 6px;">Начал кодить год назад, но интерес к Java и разработке — с 15 лет</p>
     </footer>
 </div>
-
-<!-- плавный скролл к якорям (дополнительно) -->
-<script>
-    document.querySelectorAll('.nav-links a, .btn[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if(targetId && targetId !== '#') {
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-</script>
 </body>
 </html>
